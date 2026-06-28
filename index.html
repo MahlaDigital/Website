@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مهلا اسماعیل‌تبار - مدیر پروژه دیجیتال</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg: #0F172A;
+            --surface: #1E293B;
+            --surface-light: #334155;
+            --primary: #3B82F6;
+            --primary-light: #60A5FA;
+            --secondary: #06B6D4;
+            --accent: #14B8A6;
+            --gold: #F59E0B;
+            --gold-light: #FBBF24;
+            --text: #F1F5F9;
+            --text-muted: #CBD5E1;
+            --text-dim: #94A3B8;
+            --border: rgba(59, 130, 246, 0.3);
+            --border-light: rgba(6, 182, 212, 0.2);
+        }
+
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: linear-gradient(135deg, var(--bg) 0%, #1a2340 50%, var(--surface) 100%);
+            color: var(--text);
+            line-height: 1.8;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: var(--bg);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(20, 184, 166, 0.08) 0%, transparent 50%);
+            animation: bgMove 20s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.1) rotate(2deg); }
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image-side {
+            position: relative;
+            overflow: hidden;
+            order: 2;
+        }
+
+        .hero-image-side img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 10s ease;
+        }
+
+        .hero:hover .hero-image-side img {
+            transform: scale(1.05);
+        }
+
+        .hero-image-side::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to left, transparent 0%, var(--bg) 100%);
+            z-index: 1;
+        }
+
+        .hero-content-side {
+            display: flex;
+            align-items: center;
+            padding: 80px 60px;
+            position: relative;
+            z-index: 2;
+            order: 1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid var(--border);
+            color: var(--primary-light);
+            padding: 10px 28px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--text) 0%, var(--primary-light) 50%, var(--gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.3;
+        }
+
+        .hero .subtitle {
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 25px;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 45px;
+            line-height: 2;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: var(--text);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.4);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            border: 2px solid var(--border);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(6, 182, 212, 0.15);
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 60px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+        }
+
+        .card p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 2.2;
+        }
+
+        .card strong {
+            color: var(--secondary);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .skill-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-card:hover {
+            background: var(--surface-light);
+            border-color: var(--secondary);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(6, 182, 212, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .skill-card h4 {
+            color: var(--text);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .skill-card p {
+            color: var(--text-dim);
+            font-size: 1rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 24px;
+            padding: 40px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+        }
+
+        .service-card:hover {
+            background: var(--surface-light);
+            border-color: var(--secondary);
+            transform: translateY(-8px);
+            box-shadow: 0 25px 60px rgba(6, 182, 212, 0.2);
+        }
+
+        .service-card .icon {
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .service-card h3 {
+            color: var(--text);
+            font-size: 1.4rem;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .portfolio-item {
+            background: var(--surface);
+            border: 2px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .portfolio-item:hover {
+            border-color: var(--gold);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.2);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+            background: var(--surface-light);
+        }
+
+        .portfolio-content {
+            padding: 25px;
+        }
+
+        .portfolio-item h4 {
+            color: var(--text);
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .portfolio-item p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
+        .story-section {
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, rgba(6, 182, 212, 0.05) 100%);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 70px 50px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1) 0%, transparent 70%);
+            animation: float 10s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-30px, 30px); }
+        }
+
+        .story-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .story-text h3 {
+            color: var(--gold);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+
+        .story-text p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            line-height: 2.3;
+            margin-bottom: 25px;
+        }
+
+        .story-text .highlight {
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .contact-section {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 28px;
+            padding: 60px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 30px 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(6, 182, 212, 0.12);
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .contact-item .icon {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+            display: block;
+            color: var(--secondary);
+        }
+
+        .contact-item a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 5px;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--gold);
+        }
+
+        .contact-item p {
+            color: var(--text-dim);
+            font-size: 0.92rem;
+        }
+
+        .floating-bar {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.6rem;
+            color: var(--text);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-btn.phone {
+            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
+        }
+
+        .floating-btn.message {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .floating-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+
+        .floating-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .floating-btn i {
+            position: relative;
+            z-index: 1;
+        }
+
+        footer {
+            background: var(--surface);
+            border-top: 1px solid var(--border);
+            color: var(--text-dim);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        footer .heart {
+            color: var(--gold);
+        }
+
+        @media (max-width: 968px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .hero-image-side {
+                order: 1;
+                height: 350px;
+            }
+
+            .hero-image-side::after {
+                background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+            }
+
+            .hero-content-side {
+                order: 2;
+                padding: 50px 25px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .story-content {
+                grid-template-columns: 1fr;
+            }
+
+            .story-image {
+                height: 280px;
+            }
+
+            .card, .contact-section {
+                padding: 30px 25px;
+            }
+
+            .story-section {
+                padding: 40px 25px;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .floating-bar {
+                bottom: 20px;
+                left: 20px;
+            }
+
+            .floating-btn {
+                width: 58px;
+                height: 58px;
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
+            .btn {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+            }
+
+            .hero-content-side {
+                padding: 35px 18px;
+            }
+
+            .hero-image-side {
+                height: 250px;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .card p {
+                font-size: 1rem;
+            }
+
+            .story-text h3 {
+                font-size: 1.6rem;
+            }
+
+            .story-text p {
+                font-size: 1rem;
+            }
+
+            .contact-item {
+                padding: 20px 15px;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-animation"></div>
+
+    <!-- HERO - SPLIT LAYOUT -->
+    <header class="hero">
+        <div class="hero-content-side">
+            <div class="hero-content">
+                <span class="hero-badge">✨ مدیریت پروژه دیجیتال</span>
+                <h1>مهلا اسماعیل‌تبار</h1>
+                <p class="subtitle">کسب‌وکارت را به یک برند دیجیتال تبدیل کن</p>
+                <p class="tagline">بدون کدنویسی، بدون هزینه اضافی. من مدیریت پروژه دیجیتال تو را از صفر تا صد انجام می‌دهم.</p>
+                <div class="hero-buttons">
+                    <a href="https://t.me/MahlaEsmaeiltbar" class="btn btn-primary">💬 شروع کن</a>
+                    <a href="tel:+989384303670" class="btn btn-secondary">📞 تماس بگیر</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image-side">
+            <img src="header-image.jpg" alt="فضای کار حرفه‌ای">
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- ABOUT -->
+        <section>
+            <h2 class="section-title">من کی هستم؟</h2>
+            <div class="card fade-in">
+                <p>
+                    من یک <strong>مدیر پروژه دیجیتال</strong> هستم. کار من کدنویسی نیست؛ کار من این است که با استفاده از جدیدترین ابزارهای هوش مصنوعی، یک سایت حرفه‌ای و متناسب با کسب‌وکارت طراحی کنم و خودت هم یاد بدهم چطور مدیریتش کنی.
+                    <br><br>
+                    هدف من کمک به <strong>تولیدکنندگان و تاجران کوچک</strong> برای دیده شدن در فضای آنلاین است؛ درست مثل دیوار و آمازون. (نه اینکه ادعای آمازون بودن کنم، بلکه از مسیر رشد آنها الهام گرفته‌ام.)
+                </p>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section>
+            <h2 class="section-title">تخصص‌های فنی من</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <span class="skill-icon">🏗️</span>
+                    <h4>HTML</h4>
+                    <p>ساختار صفحات وب</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🎨</span>
+                    <h4>CSS</h4>
+                    <p>طراحی و زیباسازی</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">⚡</span>
+                    <h4>Tailwind CSS</h4>
+                    <p>طراحی سریع و مدرن</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">📦</span>
+                    <h4>JSON</h4>
+                    <p>ذخیره و مدیریت داده</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">⚙️</span>
+                    <h4>JavaScript</h4>
+                    <p>منطق و تعامل</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">📱</span>
+                    <h4>PWA</h4>
+                    <p>اپلیکیشن وب نصب‌شدنی</p>
+                </div>
+                <div class="skill-card">
+                    <span class="skill-icon">🔀</span>
+                    <h4>Git</h4>
+                    <p>کنترل نسخه و همکاری تیمی</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES -->
+        <section>
+            <h2 class="section-title">چطور به تو کمک می‌کنم؟</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <span class="icon">🌐</span>
+                    <h3>ساخت سایت اختصاصی</h3>
+                    <p>طراحی و پیاده‌سازی وب‌سایت‌های حرفه‌ای و متناسب با نیاز کسب‌وکار شما، حتی با امکان استفاده از هاست و دامنه رایگان برای شروع.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">🎓</span>
+                    <h3>آموزش مدیریت سایت</h3>
+                    <p>پس از تحویل سایت، به شما آموزش می‌دهم که چگونه به راحتی محتوا و بخش‌های مختلف آن را مدیریت کنید، بدون نیاز به دانش فنی.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">🛒</span>
+                    <h3>سیستم سفارش‌دهی هوشمند</h3>
+                    <p>راه‌اندازی سیستم‌های سفارش‌دهی آنلاین که به صورت خودکار با تلگرام یا پیامک شما متصل شده و فرآیند فروش را آسان می‌کند.</p>
+                </div>
+                <div class="service-card">
+                    <span class="icon">🤝</span>
+                    <h3>شبکه‌سازی و معرفی</h3>
+                    <p>کمک به تولیدکنندگان برای ارتباط و شبکه‌سازی با یکدیگر و معرفی محصولاتشان به بازارهای جدید.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO - فقط ۵ نمونه کار (پروژه ۶ حذف شد) -->
+        <section>
+            <h2 class="section-title">نمونه‌کارهای اخیر</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="sample1-restaurant.jpg" alt="رستوران روناک" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h4>رستوران روناک</h4>
+                        <p>منوی دیجیتال و سیستم رزرو آنلاین</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="sample2-koala.jpg" alt="کفش زنانه کوآلا" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h4>کفش زنانه کوآلا</h4>
+                        <p>ویترین فروشگاهی برای نمایش و فروش کفش‌های زنانه</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="sample3-author.jpg" alt="نویسنده خانم" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h4>وب‌سایت نویسنده خانم</h4>
+                        <p>معرفی کتاب‌ها و ارتباط با مخاطبان</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="sample4-shirt.jpg" alt="پیراهن مردانه ثابت" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h4>پیراهن مردانه ثابت</h4>
+                        <p>فروشگاه آنلاین پیراهن‌های مردانه با طراحی مینیمال</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://storage.gapgpt.app/media/code_interpreter/bbee9115-8539-4069-8744-7a57516c2030/sample5-shop.png" alt="فروشگاه" class="portfolio-image">
+                    <div class="portfolio-content">
+                        <h4>فروشگاه آنلاین</h4>
+                        <p>پلتفرم فروش محصولات با سیستم پرداخت و ارسال</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- STORY -->
+        <section>
+            <h2 class="section-title">داستان یک موفقیت</h2>
+            <div class="story-section">
+                <div class="story-content">
+                    <img src="https://storage.gapgpt.app/media/code_interpreter/12e18491-d228-4602-b3bb-5b30df728264/honey-story.jpg" alt="عسل پدربزرگ" class="story-image">
+                    <div class="story-text">
+                        <h3>سی سال صبر، یک سایت، پنجاه مشتری جدید</h3>
+                        <p>
+                            مردی که <span class="highlight">سی سال</span> از عمرش را صرف تولید عسل کرد. عسلی که با دست، با محبت، و با تمام دانش و تجربه‌اش درست می‌کرد. اما هیچ‌کس نمی‌دانست این عسل وجود دارد.
+                        </p>
+                        <p>
+                            من براش یک سایت ساده ساختم. فقط یک ویترین کوچک برای نمایش محصولش. اما این سایت، یک <span class="highlight">درب بزرگ به دنیای جدید</span> باز کرد. امروز، هر ماه بیش از <strong>۵۰ مشتری جدید</strong> از طریق این سایت، عسل پدربزرگ را پیدا می‌کنند و می‌خرند.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section>
+            <h2 class="section-title">راه‌های ارتباطی</h2>
+            <div class="contact-section">
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <span class="icon"><i class="fas fa-phone-alt"></i></span>
+                        <a href="tel:+989384303670">۰۹۳۸۴۳۰۳۶۷۰</a>
+                        <p>تماس مستقیم</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon"><i class="fab fa-telegram-plane"></i></span>
+                        <a href="https://t.me/MahlaEsmaeiltbar">@MahlaEsmaeiltbar</a>
+                        <p>تلگرام</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
+                        <a href="#">مشهد، ابوطالب</a>
+                        <p>امکان مشاوره حضوری</p>
+                    </div>
+                    <div class="contact-item">
+                        <span class="icon"><i class="fab fa-linkedin-in"></i></span>
+                        <a href="https://www.linkedin.com/in/mahla-esmaeiltabar-aa8541395">LinkedIn</a>
+                        <p>پروفایل حرفه‌ای</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FLOATING BUTTONS -->
+    <div class="floating-bar">
+        <a href="tel:+989384303670" class="floating-btn phone"><i class="fas fa-phone-alt"></i></a>
+        <button class="floating-btn message open-contact"><i class="fas fa-paper-plane"></i></button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© ۱۴۰۵ - تمامی حقوق محفوظ است. ساخته شده با <span class="heart">♥</span> در مشهد</p>
+    </footer>
+
+</body>
+</html>
