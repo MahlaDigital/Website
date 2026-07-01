@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه کفش کوآلا - حسن اسماعیل تبار</title>
+    
+    <!-- JSON-LD for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ShoeStore",
+      "name": "فروشگاه کفش کوآلا",
+      "image": "https://example.com/logo.png",
+      "@id": "",
+      "url": "https://github.com/hasan-esmail-tabar/koala-shoes",
+      "telephone": "09154212724",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "خیابان هدایت",
+        "addressLocality": "مشهد",
+        "addressCountry": "IR"
+      },
+      "email": "info@koalashoes.com",
+      "founder": {
+        "@type": "Person",
+        "name": "حسن اسماعیل تبار"
+      }
+    }
+    </script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6B4423;
+            --secondary: #FFFFFF;
+            --accent: #E8D5C4;
+            --dark-accent: #8B6F47;
+            --light-bg: #F5F1ED;
+        }
+
+        body {
+            font-family: 'Tahoma', 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            color: var(--primary);
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-accent) 100%);
+            color: var(--secondary);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 0.5rem;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--accent);
+            color: var(--primary);
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(107, 68, 35, 0.7), rgba(107, 68, 35, 0.7)), 
+                        url('images/shoe1.webp');
+            background-size: cover;
+            background-position: center;
+            color: var(--secondary);
+            padding: 6rem 2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Products Section */
+        .products-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+
+        .filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--primary);
+            background-color: transparent;
+            color: var(--primary);
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background-color: var(--secondary);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(107, 68, 35, 0.2);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            background-color: var(--light-bg);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-category {
+            font-size: 0.85rem;
+            color: var(--dark-accent);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .product-color {
+            font-size: 0.85rem;
+            color: var(--dark-accent);
+        }
+
+        .product-heel {
+            font-size: 0.85rem;
+            color: var(--dark-accent);
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--primary);
+            color: var(--secondary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--dark-accent);
+            transform: scale(1.02);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark-accent) 100%);
+            color: var(--secondary);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: right;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        /* Cart Modal */
+        .cart-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .cart-modal.active {
+            display: flex;
+        }
+
+        .cart-content {
+            background-color: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-bg);
+            padding-bottom: 1rem;
+        }
+
+        .cart-header h2 {
+            color: var(--primary);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-bg);
+        }
+
+        .cart-item-name {
+            flex-grow: 1;
+            color: var(--primary);
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .remove-item {
+            background-color: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .cart-total {
+            padding: 1.5rem;
+            text-align: right;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--primary);
+            border-top: 2px solid var(--light-bg);
+            margin-top: 1rem;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: var(--secondary);
+            padding: 1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .checkout-btn:hover {
+            background-color: var(--dark-accent);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 1rem;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">🐨 Koala</div>
+            <nav>
+                <a href="#home">خانه</a>
+                <a href="#products">محصولات</a>
+                <a href="#about">درباره ما</a>
+                <a href="#contact">تماس</a>
+                <div class="cart-icon" onclick="toggleCart()">
+                    🛍️
+                    <span class="cart-count" id="cartCount">0</span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>کفش های زنانه کوآلا</h1>
+        <p>زیبایی، راحتی و الگانس در هر قدم با مدیریت حسن اسماعیل تبار</p>
+        <button class="cta-button" onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})">
+            مشاهده محصولات
+        </button>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+        <h2 class="section-title">مجموعه کفش‌های پاشنه‌دار</h2>
+        
+        <div class="filters" id="filters"></div>
+        
+        <div class="products-grid" id="productsGrid"></div>
+    </section>
+
+    <!-- About Section -->
+    <section class="products-section" id="about">
+        <h2 class="section-title">درباره برند کوآلا</h2>
+        <div style="background-color: var(--secondary); padding: 2rem; border-radius: 12px; text-align: right;">
+            <p style="margin-bottom: 1rem; font-size: 1.1rem;">
+                برند کوآلا با مدیریت <strong>حسن اسماعیل تبار</strong>، متخصص در طراحی و تولید کفش های زنانه پاشنه‌دار با کیفیت بالا است. ما با ترکیب سبک معاصر و راحتی، کفش هایی می‌سازیم که برای هر مناسبتی مناسب است.
+            </p>
+            <p style="font-size: 1.1rem;">
+                هر محصول با دقت و توجه به جزئیات ساخته می‌شود تا بهترین تجربه را برای شما فراهم کند. تمامی تصاویر محصولات در پوشه <code>images</code> قابل مشاهده هستند.
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="products-section" id="contact">
+        <h2 class="section-title">تماس با ما</h2>
+        <div style="background-color: var(--secondary); padding: 2rem; border-radius: 12px; text-align: right;">
+            <p style="margin-bottom: 1rem;">👤 مدیریت: حسن اسماعیل تبار</p>
+            <p style="margin-bottom: 1rem;">📱 شماره تماس: 09154212724</p>
+            <p style="margin-bottom: 1rem;">📍 آدرس: مشهد، خیابان هدایت</p>
+            <p>📧 ایمیل: info@koalashoes.com</p>
+        </div>
+    </section>
+
+    <!-- Cart Modal -->
+    <div class="cart-modal" id="cartModal">
+        <div class="cart-content">
+            <div class="cart-header">
+                <h2>سبد خرید</h2>
+                <button class="close-btn" onclick="toggleCart()">✕</button>
+            </div>
+            <div id="cartItems"></div>
+            <div class="cart-total">
+                جمع کل: <span id="cartTotal">0 تومان</span>
+            </div>
+            <button class="checkout-btn" onclick="checkout()">تکمیل خرید</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>درباره ما</h3>
+                <p>برند کوآلا با مدیریت حسن اسماعیل تبار، متخصص در کفش های زنانه با کیفیت بالا</p>
+            </div>
+            <div class="footer-section">
+                <h3>اطلاعات تماس</h3>
+                <p>📍 آدرس: خیابان هدایت</p>
+                <p>📞 تلفن: 09154212724</p>
+            </div>
+            <div class="footer-section">
+                <h3>دنبال کنید</h3>
+                <a href="#">اینستاگرام</a>
+                <a href="#">فیس‌بوک</a>
+                <a href="#">توئیتر</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 کوآلا - حسن اسماعیل تبار - تمام حقوق محفوظ است</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global variables
+        let products = [];
+        let cart = [];
+        const STORAGE_KEY = 'koala_cart';
+
+        // Load products from JSON
+        async function loadProducts() {
+            try {
+                // In a real scenario, this would be: const response = await fetch('products.json');
+                // For this demo, we'll embed the data directly since we're providing the files for GitHub
+                const data = {
+                  "products": [
+                    {
+                      "id": 1,
+                      "name": "کفش پاشنه بلند کلاسیک مشکی",
+                      "category": "مجلسی",
+                      "description": "کفش پاشنه بلند بسیار شیک با طراحی کلاسیک، مناسب برای مراسم‌های رسمی و مهمانی‌ها.",
+                      "price": 1250000,
+                      "image": "images/shoe1.webp",
+                      "color": "مشکی",
+                      "heelHeight": "8 سانتی‌متر",
+                      "featured": true
+                    },
+                    {
+                      "id": 2,
+                      "name": "کفش پاشنه دار چرمی قهوه‌ای",
+                      "category": "اداری",
+                      "description": "طراحی ارگونومیک و راحت برای استفاده طولانی مدت در محیط‌های کاری و رسمی.",
+                      "price": 1480000,
+                      "image": "images/shoe2.jpg",
+                      "color": "قهوه‌ای شکلاتی",
+                      "heelHeight": "6 سانتی‌متر",
+                      "featured": false
+                    },
+                    {
+                      "id": 3,
+                      "name": "کفش مجلسی نگین‌دار",
+                      "category": "مجلسی",
+                      "description": "کفش پاشنه بلند با تزئینات نگین، درخشش خاصی به استایل شما در شب می‌بخشد.",
+                      "price": 1850000,
+                      "image": "images/shoe3.jpg",
+                      "color": "مشکی مات",
+                      "heelHeight": "10 سانتی‌متر",
+                      "featured": true
+                    },
+                    {
+                      "id": 4,
+                      "name": "کفش پاشنه باریک ورنی",
+                      "category": "فانتزی",
+                      "description": "کفش پاشنه بلند استیلتو با رویه ورنی براق، انتخابی جسورانه برای خانم‌های شیک‌پوش.",
+                      "price": 1320000,
+                      "image": "images/shoe4.jpg",
+                      "color": "قهوه‌ای سوخته",
+                      "heelHeight": "9 سانتی‌متر",
+                      "featured": false
+                    },
+                    {
+                      "id": 5,
+                      "name": "نیم‌بوت پاشنه‌دار جیر",
+                      "category": "زمستانه",
+                      "description": "نیم‌بوت شیک با پاشنه پهن و راحت، مناسب برای فصل‌های سرد سال.",
+                      "price": 2100000,
+                      "image": "images/shoe5.jpeg",
+                      "color": "کالباسی",
+                      "heelHeight": "7 سانتی‌متر",
+                      "featured": false
+                    },
+                    {
+                      "id": 6,
+                      "name": "کفش پاشنه بلند ساتن",
+                      "category": "عروسی",
+                      "description": "کفش بسیار ظریف با رویه ساتن، ایده‌آل برای لباس‌های شب و لباس عروس.",
+                      "price": 1650000,
+                      "image": "images/shoe6.jpg",
+                      "color": "قهوه‌ای روشن",
+                      "heelHeight": "8 سانتی‌متر",
+                      "featured": true
+                    }
+                  ]
+                };
+                products = data.products;
+                renderProducts(products);
+                renderFilters();
+                loadCart();
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        // Render products
+        function renderProducts(productsToRender) {
+            const grid = document.getElementById('productsGrid');
+            grid.innerHTML = '';
+
+            productsToRender.forEach(product => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    \${product.featured ? '<div class="featured-badge">⭐ محبوب</div>' : ''}
+                    <img src="\${product.image}" alt="\${product.name}" class="product-image">
+                    <div class="product-info">
+                        <div class="product-category">\${product.category}</div>
+                        <h3 class="product-name">\${product.name}</h3>
+                        <p class="product-description">\${product.description}</p>
+                        <div class="product-details">
+                            <span class="product-color">🎨 \${product.color}</span>
+                            <span class="product-heel">👠 \${product.heelHeight}</span>
+                        </div>
+                        <div class="product-price">\${product.price.toLocaleString()} تومان</div>
+                        <button class="add-to-cart-btn" onclick="addToCart(\${product.id})">
+                            افزودن به سبد
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Render filters
+        function renderFilters() {
+            const filtersContainer = document.getElementById('filters');
+            const categories = ['همه', ...new Set(products.map(p => p.category))];
+
+            categories.forEach(category => {
+                const btn = document.createElement('button');
+                btn.className = 'filter-btn' + (category === 'همه' ? ' active' : '');
+                btn.textContent = category;
+                btn.onclick = () => filterByCategory(category, btn);
+                filtersContainer.appendChild(btn);
+            });
+        }
+
+        // Filter by category
+        function filterByCategory(category, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            if (category === 'همه') {
+                renderProducts(products);
+            } else {
+                const filtered = products.filter(p => p.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        // Add to cart
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            saveCart();
+            updateCartUI();
+            alert(`\${product.name} به سبد خرید اضافه شد!`);
+        }
+
+        // Remove from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            saveCart();
+            updateCartUI();
+        }
+
+        // Update cart UI
+        function updateCartUI() {
+            document.getElementById('cartCount').textContent = cart.length;
+            
+            const cartItemsContainer = document.getElementById('cartItems');
+            cartItemsContainer.innerHTML = '';
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = '<p style="text-align: center; color: #999; padding: 2rem;">سبد خرید خالی است</p>';
+            } else {
+                cart.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'cart-item';
+                    itemDiv.innerHTML = `
+                        <span class="cart-item-name">\${item.name}</span>
+                        <span class="cart-item-price">\${(item.price * item.quantity).toLocaleString()} تومان</span>
+                        <button class="remove-item" onclick="removeFromCart(\${item.id})">حذف</button>
+                    `;
+                    cartItemsContainer.appendChild(itemDiv);
+                });
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('cartTotal').textContent = total.toLocaleString() + ' تومان';
+        }
+
+        // Save cart to localStorage
+        function saveCart() {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+        }
+
+        // Load cart from localStorage
+        function loadCart() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                cart = JSON.parse(saved);
+                updateCartUI();
+            }
+        }
+
+        // Toggle cart modal
+        function toggleCart() {
+            document.getElementById('cartModal').classList.toggle('active');
+        }
+
+        // Checkout
+        function checkout() {
+            if (cart.length === 0) {
+                alert('سبد خرید خالی است!');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            alert(`سفارش شما با مدیریت حسن اسماعیل تبار به مبلغ \${total.toLocaleString()} تومان ثبت شد!\n\nتشکر از خریدتان از کوآلا 🐨`);
+            
+            cart = [];
+            saveCart();
+            updateCartUI();
+            toggleCart();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', loadProducts);
+    </script>
+</body>
+</html>
