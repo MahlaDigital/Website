@@ -1,0 +1,70 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "کفش پاشنه بلند کلاسیک مشکی",
+      "category": "مجلسی",
+      "description": "کفش پاشنه بلند بسیار شیک با طراحی کلاسیک، مناسب برای مراسم‌های رسمی و مهمانی‌ها.",
+      "price": 1250000,
+      "image": "images/shoe1.webp",
+      "color": "مشکی",
+      "heelHeight": "8 سانتی‌متر",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "کفش پاشنه دار چرمی قهوه‌ای",
+      "category": "اداری",
+      "description": "طراحی ارگونومیک و راحت برای استفاده طولانی مدت در محیط‌های کاری و رسمی.",
+      "price": 1480000,
+      "image": "images/shoe2.jpg",
+      "color": "قهوه‌ای شکلاتی",
+      "heelHeight": "6 سانتی‌متر",
+      "featured": false
+    },
+    {
+      "id": 3,
+      "name": "کفش مجلسی نگین‌دار",
+      "category": "مجلسی",
+      "description": "کفش پاشنه بلند با تزئینات نگین، درخشش خاصی به استایل شما در شب می‌بخشد.",
+      "price": 1850000,
+      "image": "images/shoe3.jpg",
+      "color": "مشکی مات",
+      "heelHeight": "10 سانتی‌متر",
+      "featured": true
+    },
+    {
+      "id": 4,
+      "name": "کفش پاشنه باریک ورنی",
+      "category": "فانتزی",
+      "description": "کفش پاشنه بلند استیلتو با رویه ورنی براق، انتخابی جسورانه برای خانم‌های شیک‌پوش.",
+      "price": 1320000,
+      "image": "images/shoe4.jpg",
+      "color": "قهوه‌ای سوخته",
+      "heelHeight": "9 سانتی‌متر",
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "نیم‌بوت پاشنه‌دار جیر",
+      "category": "زمستانه",
+      "description": "نیم‌بوت شیک با پاشنه پهن و راحت، مناسب برای فصل‌های سرد سال.",
+      "price": 2100000,
+      "image": "images/shoe5.jpeg",
+      "color": "کالباسی",
+      "heelHeight": "7 سانتی‌متر",
+      "featured": false
+    },
+    {
+      "id": 6,
+      "name": "کفش پاشنه بلند ساتن",
+      "category": "عروسی",
+      "description": "کفش بسیار ظریف با رویه ساتن، ایده‌آل برای لباس‌های شب و لباس عروس.",
+      "price": 1650000,
+      "image": "images/shoe6.jpg",
+      "color": "قهوه‌ای روشن",
+      "heelHeight": "8 سانتی‌متر",
+      "featured": true
+    }
+  ]
+}
